@@ -40,3 +40,5 @@ print(w.grad)
 #Weight = Weight - (n*gradient)
 #We keep doing this until convergence, when the weights become very small
 #we say our networks have converged.
+
+
