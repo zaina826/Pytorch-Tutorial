@@ -23,7 +23,7 @@ To get started with this repository, clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/zaina826/Pytorch-Tutorial.git
-cd pytorch-learning
+cd Pytorch-Tutorial
 ```
 
 
