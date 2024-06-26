@@ -1,1 +1,4 @@
-loss.backward()
+        print(weights)
+
+        print("Biases:")
+        print(biases)
