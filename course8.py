@@ -20,7 +20,7 @@ X_train, X_test, y_train, y_test= train_test_split(X,y, test_size=0.2, random_st
 #So now, we have X and Y which we'll use for training and X and Y which we'll use for testing.
 
 #Scale:
-sc = StandardScaler()
+sc = StandardScaler() #Squish them to a range between 0 and 1 I think.
 X_train= sc.fit_transform(X_train)
 #Since we've already found the scaling parameters: mean, standard deviation, we don't need to find them again
 #so we just say transform.
@@ -30,8 +30,10 @@ X_test = sc.transform(X_test)
 
 X_train= torch.from_numpy(X_train.astype(np.float32))
 X_test= torch.from_numpy(X_test.astype(np.float32))
+
 y_train= torch.from_numpy(y_train.astype(np.float32))
 y_test= torch.from_numpy(y_test.astype(np.float32))
+#Since this is logistic regression all the y data is just ones and zeros.
 
 #Reshape y tensors, like last tutorial
 y_train= y_train.view(y_train.shape[0],1) #So now it will go from one row to one column
@@ -45,7 +47,8 @@ class LogisticRegression(nn.Module):
         super(LogisticRegression,self).__init__()
         self.linear = nn.Linear(n_features,1)
     def forward(self,x):
-        y_predicted= torch.sigmoid(self.linear(x)) #Sigmoid after the linear function
+        y_predicted= torch.sigmoid(self.linear(x)) #Sigmoid gives it a range between 0,1 Does the same job as scaling
+        #So here we'll return a number between 0 and 1
         return(y_predicted)
 model = LogisticRegression(n_features)   
 
@@ -70,6 +73,6 @@ for epoch in range(num_of_epochs):
 
 with torch.no_grad():
     y_predicted = model(X_test)
-    y_predicted_classes = y_predicted.round()
+    y_predicted_classes = y_predicted.round() #Default threshold of 0.5
     accuracy = y_predicted_classes.eq(y_test).sum()/float(y_test.shape[0]) #Sum all correcrt predictions then divide them by all the samples
     print(f'accuracy={accuracy:.4f}')
