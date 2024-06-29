@@ -54,7 +54,7 @@ criterion = nn.BCELoss() #Binary Cross Entropy
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
 # 3) Optimizer
-num_of_epochs= 100
+num_of_epochs= 1000
 for epoch in range(num_of_epochs):
     y_predicted= model(X_train)
     loss = criterion(y_predicted, y_train) #The training samples and the predicted ys
@@ -71,4 +71,5 @@ for epoch in range(num_of_epochs):
 with torch.no_grad():
     y_predicted = model(X_test)
     y_predicted_classes = y_predicted.round()
-    print(y_predicted)
+    accuracy = y_predicted_classes.eq(y_test).sum()/float(y_test.shape[0]) #Sum all correcrt predictions then divide them by all the samples
+    print(f'accuracy={accuracy:.4f}')
