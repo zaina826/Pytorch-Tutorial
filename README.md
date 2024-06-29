@@ -37,8 +37,4 @@ pip install -r requirements.txt
 
 You can explore the Python scripts in the `scripts/` directory for various PyTorch models and utilities. Check out the `notes/` directory for my personal notes and additional insights in the PDF file.
 
-## Acknowledgments
-
-I would like to thank Patrick Loeber and 3Blue1Brown for their excellent tutorials and resources that have greatly aided my learning process.
-
 Happy learning!
