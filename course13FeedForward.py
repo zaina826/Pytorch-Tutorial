@@ -67,5 +67,36 @@ optimizer= torch.optim.Adam(model.parameters(), lr= learning_rate)
 
 #Training Loop
 n_total_steps= len(train_loader)
-# for epoch in range(num_epochs):
-#     for i, (images, labels) in enumerate(train_loader):
+for epoch in range(num_epochs):
+    for i, (images, labels) in enumerate(train_loader):
+        #100,1,28,28
+        images= images.reshape(-1, 28*28).to(device)
+        labels= labels.to(device)
+
+        #Forward:
+        outputs= model(images)
+        loss= criterion(outputs, labels)
+
+        #Backward: 
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+        if (i+1)%100==0:
+            print(f'epoch {epoch+1} / {num_epochs}, step{i+1}/{n_total_steps}, loss= {loss.item():.4f}')
+
+#test
+with torch.no_grad(): 
+    n_correct= 0
+    n_samples = 0
+    for images, labels in test_loader:
+        images= images.reshape(-1, 28*28).to(device)
+        labels= labels.to(device)
+        outputs= model(images)
+
+        _,predictions= torch.max(outputs,1) #Returns the value with the highest probability, along the first axis 
+        n_samples+=labels.shape[0]
+        n_correct+= (predictions==labels).sum().item()
+
+    accuracy= 100.0*n_correct/n_samples
+    print(f'accuracy : {accuracy}')
