@@ -17,9 +17,8 @@ https://www.youtube.com/watch?v=vJiZqZRkIg8
 
 ## Repository Structure
 
-- `scripts/`: Python scripts for various PyTorch models and utilities.
 - `data/`: Sample datasets used for training and testing models.
-- `notes/`: A PDF file with my personal notes and observations.
+- `Notes/`: A PDF file with my personal notes and observations.
 
 ## Getting Started
 
@@ -39,6 +38,6 @@ pip install -r requirements.txt
 
 ## Usage
 
-You can explore the Python scripts in the `scripts/` directory for various PyTorch models and utilities. Check out the `notes/` directory for my personal notes and additional insights in the PDF file.
+You can explore the Python scripts in the main directory for various PyTorch models and utilities. Check out the `Notes/` directory for my personal notes and additional insights in the PDF file.
 
 Happy learning!
